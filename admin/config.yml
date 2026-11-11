@@ -1,0 +1,115 @@
+# =========================================================
+# Verwaltungsportal von luxu_refind (Decap CMS)
+# Nur GitHub-Konten mit Schreibzugriff auf das Repository können sich anmelden.
+# =========================================================
+backend:
+  name: github
+  repo: GITHUB-NAME/luxu-refind   # <- hier euren GitHub-Namen und den Repository-Namen eintragen
+  branch: main
+  commit_messages:
+    update: "Shop aktualisiert ({{path}})"
+    uploadMedia: "Foto hochgeladen: {{path}}"
+    deleteMedia: "Foto gelöscht: {{path}}"
+
+locale: de
+logo_url: /images/seite/logo.svg
+site_url: https://luxu-refind.netlify.app
+display_url: https://luxu-refind.netlify.app
+media_folder: images/produkte
+public_folder: /images/produkte
+
+collections:
+  - name: shop
+    label: Shop
+    editor:
+      preview: false
+    files:
+      - name: produkte
+        label: Produkte
+        file: data/produkte.json
+        fields:
+          - name: produkte
+            label: Produkte
+            label_singular: Produkt
+            widget: list
+            add_to_top: true
+            collapsed: true
+            summary: "{{fields.marke}} – {{fields.titel}} ({{fields.preis}} €)"
+            fields:
+              - name: id
+                label: Link-Name
+                widget: string
+                hint: "Nur Kleinbuchstaben, Zahlen und Bindestriche, z. B. barbour-wachsjacke-oliv. Jedes Produkt braucht einen eigenen."
+                pattern: ['^[a-z0-9-]+$', "Bitte nur Kleinbuchstaben, Zahlen und Bindestriche verwenden."]
+              - name: verkauft
+                label: Verkauft
+                widget: boolean
+                default: false
+                required: false
+                hint: "Einschalten, sobald das Teil verkauft ist. Es verschwindet dann aus dem Shop."
+              - {name: marke, label: Marke, widget: string}
+              - {name: titel, label: Artikel, widget: string, hint: "z. B. Beaufort Wachsjacke, Oliv"}
+              - {name: preis, label: "Preis in Euro", widget: number, value_type: float, min: 0}
+              - name: kategorie
+                label: Kategorie
+                widget: select
+                options:
+                  - {label: Damen, value: damen}
+                  - {label: Herren, value: herren}
+                  - {label: Accessoires, value: accessoires}
+              - name: typ
+                label: Art
+                widget: select
+                options:
+                  - {label: Mantel, value: mantel}
+                  - {label: "Jacke / Sakko", value: jacke}
+                  - {label: Strick, value: strick}
+                  - {label: "Hemd / Bluse", value: hemd}
+                  - {label: Kleid, value: kleid}
+                  - {label: Hose, value: hose}
+                  - {label: Schuhe, value: schuhe}
+                  - {label: Tasche, value: tasche}
+                  - {label: Tuch, value: tuch}
+              - {name: groesse, label: Größe, widget: string}
+              - name: zustand
+                label: Zustand
+                widget: select
+                options: ["Neuwertig", "Sehr gut", "Gut"]
+              - {name: passform, label: Passform, widget: string, required: false, hint: "z. B. Fällt eher klein aus. Leer lassen = Fällt normal aus."}
+              - {name: material, label: Material, widget: string, required: false}
+              - name: masse
+                label: Maße
+                label_singular: Maß
+                widget: list
+                required: false
+                summary: "{{fields.bezeichnung}}: {{fields.wert}}"
+                fields:
+                  - {name: bezeichnung, label: Bezeichnung, widget: string, hint: "z. B. Brustweite"}
+                  - {name: wert, label: Wert, widget: string, hint: "z. B. 58 cm"}
+              - {name: beschreibung, label: Beschreibung, widget: text, required: false}
+              - name: auffaelligkeiten
+                label: "Was uns aufgefallen ist (Mängel)"
+                label_singular: Punkt
+                widget: list
+                required: false
+                field: {name: punkt, label: Punkt, widget: string}
+              - {name: bild, label: Hauptfoto, widget: image, hint: "Am besten hochkant, heller Hintergrund."}
+              - {name: bild2, label: "Zweites Foto (Detail oder Rückseite)", widget: image, required: false}
+              - name: eingestellt
+                label: Eingestellt am
+                widget: datetime
+                format: "YYYY-MM-DD"
+                date_format: "DD.MM.YYYY"
+                time_format: false
+                hint: "Die neuesten Stücke erscheinen zuerst."
+              - {name: artikelnummer, label: Artikelnummer, widget: string, required: false}
+
+      - name: einstellungen
+        label: Einstellungen
+        file: data/einstellungen.json
+        fields:
+          - {name: hinweis, label: "Hinweis in der schwarzen Leiste oben", widget: string, required: false, hint: "Leer lassen, um die Leiste auszublenden."}
+          - {name: startbild_unterzeile, label: "Kleine Zeile unten links im Startbild", widget: string, required: false}
+          - {name: versandkosten, label: "Versandkosten in Euro", widget: number, value_type: float, min: 0}
+          - {name: kostenlos_ab, label: "Kostenloser Versand ab (Euro)", widget: number, value_type: float, min: 0}
+          - {name: neu_anzahl, label: "Wie viele Stücke ein „Neu“-Etikett bekommen", widget: number, value_type: int, min: 0, max: 12}

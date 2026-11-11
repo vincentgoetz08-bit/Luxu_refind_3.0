@@ -1,0 +1,8 @@
+[build]
+  publish = "."
+
+# Produktdaten immer frisch laden, damit Änderungen aus dem Portal sofort sichtbar sind
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "no-cache"

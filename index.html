@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>luxu_refind. – Designermode aus zweiter Hand</title>
+<meta name="robots" content="noindex, nofollow"><!-- Vorschau: vor dem echten Start entfernen -->
+<meta name="description" content="Geprüfte Designermode aus zweiter Hand. Jedes Teil gibt es nur einmal.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   FARBEN & SCHRIFT – schwarz, weiß, warme Grautöne
+   ========================================================= */
+:root{
+  --bg:#FFFFFF;      /* Hintergrund */
+  --ink:#0E0E0E;     /* Text, Buttons, Akzente */
+  --muted:#7A7975;   /* Nebentext */
+  --line:#E6E5E1;    /* Linien */
+  --tile:#F2F1EE;    /* Fläche hinter Produktfotos */
+  --inv:#0E0E0E;     /* schwarze Flächen */
+  --on-inv:#F4F3EF;  /* Text auf Schwarz */
+  --inv-muted:#9A9994;
+  --font:"Outfit","Helvetica Neue",Arial,sans-serif;
+  --note:32px; --hdr:64px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F0F0F; --ink:#EDECE8; --muted:#9A9994; --line:#2A2A28; --tile:#1B1B1A; --inv:#000000; --on-inv:#EDECE8; --inv-muted:#8A8984;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F0F0F; --ink:#EDECE8; --muted:#9A9994; --line:#2A2A28; --tile:#1B1B1A; --inv:#000000; --on-inv:#EDECE8; --inv-muted:#8A8984;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+:root{padding-bottom:env(safe-area-inset-bottom, 0px)}
+html{scroll-padding-top:calc(var(--note) + var(--hdr) + env(safe-area-inset-top, 0px))}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button,input,select{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+.px{padding-left:clamp(16px,2.4vw,32px);padding-right:clamp(16px,2.4vw,32px)}
+.light{font-weight:300}
+.muted{color:var(--muted)}
+.u{text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.wm{font-weight:500;letter-spacing:-.025em;white-space:nowrap}
+
+/* ===== Kopf ===== */
+.topbar{position:fixed;left:0;right:0;top:0;z-index:30;padding-top:env(safe-area-inset-top, 0px);background:var(--bg);color:var(--ink);transition:background-color .35s,color .35s,border-color .35s}
+.note{height:var(--note);display:grid;place-items:center;background:var(--inv);color:var(--on-inv);font-size:12px;font-weight:300;letter-spacing:.02em;padding:0 16px;text-align:center}
+.hdr{height:var(--hdr);display:flex;align-items:center;gap:40px;border-bottom:1px solid var(--line);transition:border-color .35s}
+.hdr .wm{font-size:22px;max-width:220px;overflow:hidden;transition:opacity .35s,max-width .45s,margin .45s}
+.nav{display:flex;gap:26px;font-weight:300}
+.nav a{padding:6px 0}
+.nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+.tools{margin-left:auto;display:flex;gap:26px;font-weight:300}
+.menubtn{display:none;font-weight:300}
+.topbar.over{background:transparent;color:#fff}
+.topbar.over .hdr{border-color:transparent}
+.topbar.over .hdr .wm{opacity:0;pointer-events:none}
+@media (min-width:901px){.topbar.over .hdr .wm{max-width:0;margin-right:-40px}}
+@media (max-width:900px){
+  .hdr{gap:0;justify-content:space-between}
+  .nav{display:none}
+  .menubtn{display:block}
+  .hdr .wm{position:absolute;left:50%;transform:translateX(-50%)}
+  .tools{margin-left:0}
+  .tools .search{display:none}
+}
+
+/* Menü auf dem Handy */
+.mpanel{position:fixed;inset:0 auto 0 0;width:min(380px,88%);background:var(--bg);color:var(--ink);z-index:60;transform:translateX(-100%);transition:transform .4s cubic-bezier(.2,.7,.2,1);padding:calc(env(safe-area-inset-top, 0px) + 18px) 24px 40px;overflow:auto}
+.mpanel.open{transform:none}
+.mpanel .close{display:block;margin-left:auto;font-weight:300}
+.mpanel a{display:block;font-size:28px;font-weight:400;letter-spacing:-.02em;padding:10px 0;border-bottom:1px solid var(--line)}
+.mpanel a.sub{font-size:16px;font-weight:300;color:var(--muted);border:0;padding:6px 0 6px 2px}
+
+/* ===== Startseite ===== */
+.hero{position:relative;height:100vh;height:100svh;min-height:560px;overflow:hidden;background:#151515;color:#fff}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 40%}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 70%,rgba(0,0,0,.35))}
+.hero h1{position:absolute;z-index:2;left:0;right:0;top:56%;transform:translateY(-50%);text-align:center;font-size:13.4vw;font-weight:500;letter-spacing:-.045em;line-height:1}
+.hero .foot{position:absolute;z-index:2;left:0;right:0;bottom:calc(26px + env(safe-area-inset-bottom, 0px));display:flex;justify-content:space-between;gap:12px;font-weight:300;font-size:14px}
+@media (max-width:700px){.hero h1{font-size:15vw}.hero .foot{flex-direction:column}.hero img{object-position:52% 40%}}
+
+.sec{padding-top:clamp(56px,6vw,80px)}
+.bar{display:flex;align-items:center;gap:8px;padding-bottom:24px}
+.bar h2{font-size:15px;font-weight:500;margin-right:20px;white-space:nowrap}
+.chips{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{border:1px solid var(--line);border-radius:999px;padding:6px 16px;color:var(--muted);font-weight:300;white-space:nowrap;transition:border-color .2s,color .2s}
+.chip:hover{border-color:var(--ink);color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.bar .right{margin-left:auto;font-weight:300;white-space:nowrap}
+@media (max-width:700px){.bar{flex-wrap:wrap}.bar h2{width:100%;margin-bottom:6px}.bar .right{display:none}}
+
+/* Produktkachel */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:52px 14px}
+@media (max-width:1000px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:700px){.grid{grid-template-columns:repeat(2,1fr);gap:34px 8px}}
+.card{display:block}
+.card .im{position:relative;aspect-ratio:3/4;background:var(--tile);overflow:hidden}
+.card .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .im img.alt{opacity:0;transition:opacity .5s}
+@media (hover:hover){.card:hover .im img.alt{opacity:1}}
+.tag{position:absolute;z-index:2;left:10px;top:10px;font-size:12px;background:#fff;color:#0E0E0E;padding:2px 9px;border-radius:999px}
+.meta{display:flex;justify-content:space-between;gap:12px;margin-top:11px}
+.meta .b{font-weight:500}
+.card .t{color:var(--muted);font-weight:300}
+@media (max-width:700px){.meta{flex-direction:column;gap:0}}
+
+/* Schwarzer Block */
+.about{display:grid;grid-template-columns:1fr 1fr;margin-top:clamp(80px,9vw,120px);background:var(--inv);color:var(--on-inv)}
+.about .im{aspect-ratio:1/1;overflow:hidden}
+.about img{width:100%;height:100%;object-fit:cover}
+.about .txt{padding:clamp(28px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;gap:32px}
+.about h3{font-size:clamp(28px,3vw,42px);font-weight:400;letter-spacing:-.03em;line-height:1.1;max-width:16ch}
+.about p{max-width:40ch;font-weight:300;color:var(--inv-muted);margin-top:18px}
+.about .small{font-weight:300;color:var(--inv-muted)}
+@media (max-width:760px){.about{grid-template-columns:1fr}}
+
+/* Kategorien */
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding-top:clamp(80px,9vw,120px)}
+.cat .im{aspect-ratio:4/5;background:var(--tile);overflow:hidden}
+.cat img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:filter .6s}
+@media (hover:hover){.cat:hover img{filter:none}}
+.cat .l{display:flex;justify-content:space-between;margin-top:11px}
+.cat .l span:last-child{color:var(--muted);font-weight:300}
+@media (max-width:760px){.cats{grid-template-columns:1fr}}
+.brands{display:flex;flex-wrap:wrap;gap:6px 22px;padding-top:56px;font-weight:300;color:var(--muted)}
+.brands span{color:var(--ink);font-weight:400;margin-right:10px}
+.brands a:hover{color:var(--ink)}
+
+/* ===== Unterseiten ===== */
+main.sub{padding-top:calc(var(--note) + var(--hdr) + env(safe-area-inset-top, 0px))}
+.backbar{padding-top:20px}
+.back{display:inline-flex;align-items:center;gap:6px;font-weight:300}
+.back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:1.5}
+.crumb{color:var(--muted);font-weight:300;font-size:14px}
+.crumb a:hover{color:var(--ink)}
+.lhead{padding-top:28px;padding-bottom:28px}
+.lhead h1{font-size:clamp(34px,4vw,52px);font-weight:400;letter-spacing:-.03em;line-height:1.05;margin-top:10px}
+.lhead p{color:var(--muted);font-weight:300;margin-top:8px;max-width:56ch}
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px 22px;padding-top:14px;padding-bottom:14px;margin-bottom:28px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.filters label{display:flex;align-items:center;gap:8px;font-weight:300;color:var(--muted)}
+.filters select{border:0;background:transparent;font-weight:400;color:var(--ink);padding:4px 2px;border-radius:0}
+.filters .count{margin-left:auto;font-weight:300;color:var(--muted)}
+.empty{padding:60px 0 100px;color:var(--muted);font-weight:300}
+.listwrap{padding-bottom:40px}
+
+/* Produktseite */
+.pdp{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(28px,4.5vw,64px);padding-top:18px}
+.stack{display:grid;gap:8px;align-content:start}
+.stack .im{aspect-ratio:4/5;background:var(--tile);overflow:hidden}
+.stack img{width:100%;height:100%;object-fit:cover}
+.dots{display:none}
+.info{position:sticky;top:calc(var(--note) + var(--hdr) + 24px + env(safe-area-inset-top, 0px));align-self:start;max-width:470px}
+.ptop{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.info h1{font-size:30px;font-weight:400;letter-spacing:-.025em;line-height:1.12}
+.info h1 span{display:block;color:var(--muted);font-weight:300}
+.badge{border:1px solid var(--ink);border-radius:999px;padding:3px 12px;white-space:nowrap;margin-top:4px;font-size:13px;font-weight:300}
+.price{font-size:21px;margin-top:22px}
+.small{color:var(--muted);margin-top:6px;font-weight:300;font-size:14px}
+.small a{text-decoration:underline;text-underline-offset:3px}
+.lab{margin-top:32px;margin-bottom:10px}
+.size{display:inline-grid;place-items:center;min-width:46px;height:46px;border-radius:999px;padding:0 12px;background:var(--ink);color:var(--bg)}
+.one{margin-top:28px;border:1px solid var(--line);border-radius:999px;min-height:46px;display:grid;place-items:center;color:var(--muted);font-weight:300;text-align:center;padding:6px 16px}
+.btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.btn{min-height:52px;border-radius:999px;border:1px solid var(--ink);display:grid;place-items:center;font-weight:500;padding:0 18px;text-align:center;transition:background .25s,color .25s}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn.fill{background:var(--ink);color:var(--bg)}
+.btn.fill:hover{background:transparent;color:var(--ink)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+.btn[disabled]:hover{background:var(--ink);color:var(--bg)}
+.more{grid-column:2;justify-self:center;color:var(--muted);font-size:13px;font-weight:300;text-decoration:underline;text-underline-offset:3px}
+@media (max-width:520px){.btns{grid-template-columns:1fr}.more{grid-column:1}}
+.rows{margin-top:36px;border-top:1px solid var(--line)}
+details.acc summary{list-style:none;display:flex;justify-content:space-between;align-items:center;padding:15px 0;cursor:pointer;font-weight:500}
+details.acc summary::-webkit-details-marker{display:none}
+details.acc summary::after{content:"+";font-weight:300;font-size:18px;line-height:1}
+details.acc[open] summary::after{content:"–"}
+.acc-body{padding:0 0 18px;font-weight:300;color:var(--muted)}
+.acc-body p+p{margin-top:8px}
+.acc-body a{text-decoration:underline;text-underline-offset:3px;color:var(--ink)}
+details.acc{border-bottom:1px solid var(--line)}
+.row{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+.row span:last-child{color:var(--muted);font-weight:300;text-align:right}
+.condrow{padding:15px 0;border-bottom:1px solid var(--line)}
+.condrow .h{display:flex;justify-content:space-between}
+.cond{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:12px}
+.cond i{height:2px;background:var(--line)}
+.cond i.on{background:var(--ink)}
+.condl{display:grid;grid-template-columns:repeat(3,1fr);font-size:12px;color:var(--muted);margin-top:6px;font-weight:300}
+.condl span:nth-child(2){text-align:center}.condl span:nth-child(3){text-align:right}
+.condl .c{color:var(--ink);font-weight:400}
+.condrow p{margin-top:12px;font-weight:300;color:var(--muted)}
+.related{padding-top:clamp(80px,9vw,120px)}
+.related h2{font-size:15px;font-weight:500;padding-bottom:24px}
+@media (max-width:900px){
+  .pdp{grid-template-columns:1fr;gap:22px}
+  .stack{grid-auto-flow:column;grid-auto-columns:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;gap:0;margin:0 calc(-1 * clamp(16px,2.4vw,32px))}
+  .stack::-webkit-scrollbar{display:none}
+  .stack .im{scroll-snap-align:start}
+  .dots{display:flex;justify-content:center;gap:7px;margin-top:10px}
+  .dots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+  .dots i.on{background:var(--ink)}
+  .info{position:static;max-width:none}
+  .info h1{font-size:26px}
+}
+
+/* Text & Kasse */
+.textpage{max-width:760px;padding-top:28px;padding-bottom:40px}
+.textpage h1{font-size:clamp(34px,4vw,48px);font-weight:400;letter-spacing:-.03em;margin:10px 0 24px}
+.textpage p{margin-bottom:12px;font-weight:300}
+.ph{border:1px dashed var(--muted);padding:20px 22px;margin:22px 0}
+.ph strong{font-weight:500}
+.sum{border-top:1px solid var(--line);margin:18px 0 24px}
+.sum .r{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-weight:300}
+.sum .r.t{font-weight:500}
+.credits{list-style:none;font-weight:300;font-size:14px}
+.credits li{padding:11px 0;border-bottom:1px solid var(--line)}
+.credits a{color:var(--muted);text-decoration:underline;text-underline-offset:3px}
+
+/* Warenkorb */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);opacity:0;pointer-events:none;transition:opacity .35s;z-index:50}
+.overlay.open{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--bg);z-index:60;transform:translateX(100%);transition:transform .45s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top, 0px);padding-bottom:env(safe-area-inset-bottom, 0px)}
+.drawer.open{transform:none}
+.dhead{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--line)}
+.dhead span{font-weight:500}
+.dhead button{font-weight:300}
+.ditems{flex:1;overflow:auto;padding:0 24px}
+.ci{display:grid;grid-template-columns:78px 1fr auto;gap:14px;padding:18px 0;border-bottom:1px solid var(--line)}
+.ci .im{aspect-ratio:3/4;background:var(--tile);overflow:hidden}
+.ci img{width:100%;height:100%;object-fit:cover}
+.ci .b{font-weight:500}
+.ci .m{color:var(--muted);font-weight:300;font-size:14px}
+.ci button{font-size:13px;color:var(--muted);text-decoration:underline;margin-top:6px;font-weight:300}
+.dfoot{padding:20px 24px 26px;border-top:1px solid var(--line)}
+.dfoot .r{display:flex;justify-content:space-between;font-weight:300;padding:2px 0}
+.dfoot .r.t{font-weight:500;padding:10px 0 16px}
+.dfoot .note2{font-size:13px;color:var(--muted);font-weight:300;margin-top:12px}
+
+/* Fußzeile */
+footer{background:var(--inv);color:var(--on-inv);margin-top:clamp(90px,10vw,130px);padding-top:56px;padding-bottom:calc(24px + env(safe-area-inset-bottom, 0px))}
+.fcols{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:24px}
+.fcols p{color:var(--inv-muted);max-width:30ch;font-weight:300}
+.fcols h4{font-weight:500;font-size:15px;margin-bottom:12px}
+.fcols ul{list-style:none}
+.fcols li{margin-bottom:7px}
+.fcols li a{color:var(--inv-muted);font-weight:300}
+.fcols li a:hover{color:var(--on-inv)}
+.fword{font-size:15.6vw;letter-spacing:-.05em;line-height:.9;margin-top:64px}
+.legal{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;color:var(--inv-muted);font-size:12px;margin-top:20px;font-weight:300}
+@media (max-width:760px){.fcols{grid-template-columns:1fr 1fr}.fcols>div:first-child{grid-column:1/-1}}
+</style>
+</head>
+<body>
+
+<div class="topbar" id="topbar">
+  <div class="note" id="note">&nbsp;</div>
+  <div class="hdr px">
+    <button class="menubtn" id="menubtn">Menü</button>
+    <a href="#start" class="wm" aria-label="luxu_refind, Startseite">luxu_refind.</a>
+    <nav class="nav" aria-label="Hauptmenü">
+      <a href="#neu" data-r="neu">Neu</a>
+      <a href="#damen" data-r="damen">Damen</a>
+      <a href="#herren" data-r="herren">Herren</a>
+      <a href="#accessoires" data-r="accessoires">Accessoires</a>
+      <a href="#marken" data-r="marken">Marken</a>
+    </nav>
+    <div class="tools">
+      <a href="#neu" class="search">Alle Stücke</a>
+      <button id="cartbtn" aria-haspopup="dialog">Warenkorb <span id="count">0</span></button>
+    </div>
+  </div>
+</div>
+
+<aside class="mpanel" id="mpanel" aria-label="Menü">
+  <button class="close" id="mclose">Schließen</button>
+  <div style="margin-top:16px">
+    <a href="#neu">Neu</a>
+    <a href="#damen">Damen</a>
+    <a href="#herren">Herren</a>
+    <a href="#accessoires">Accessoires</a>
+    <a href="#marken">Marken</a>
+    <a href="#ueber-uns" class="sub" style="margin-top:18px">Über luxu_refind</a>
+    <a href="#versand" class="sub">Versand & Zahlung</a>
+    <a href="#widerruf" class="sub">Rückgabe</a>
+  </div>
+</aside>
+
+<main id="app"></main>
+
+<footer>
+  <div class="px">
+    <div class="fcols">
+      <div><p>Geprüfte Designermode aus zweiter Hand. Jedes Teil gibt es nur einmal.</p></div>
+      <div><h4>Shop</h4><ul><li><a href="#neu">Neu</a></li><li><a href="#damen">Damen</a></li><li><a href="#herren">Herren</a></li><li><a href="#accessoires">Accessoires</a></li><li><a href="#marken">Marken</a></li></ul></div>
+      <div><h4>Hilfe</h4><ul><li><a href="#versand">Versand & Zahlung</a></li><li><a href="#widerruf">Rückgabe</a></li><li><a href="#widerruf">Vertrag widerrufen</a></li><li><a href="#ueber-uns">Über uns</a></li></ul></div>
+      <div><h4>Rechtliches</h4><ul><li><a href="#impressum">Impressum</a></li><li><a href="#datenschutz">Datenschutz</a></li><li><a href="#agb">AGB</a></li><li><a href="#bildnachweis">Bildnachweis</a></li></ul></div>
+    </div>
+    <div class="fword wm" aria-hidden="true">luxu_refind.</div>
+    <div class="legal"><span>© 2026 luxu_refind</span><span>Alle Preise zzgl. Versandkosten</span></div>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="dtitle" aria-hidden="true">
+  <div class="dhead"><span id="dtitle">Warenkorb</span><button id="closecart">Schließen</button></div>
+  <div class="ditems" id="ditems"></div>
+  <div class="dfoot" id="dfoot"></div>
+</aside>
+
+<script>
+/* Bilder der Seite (Startbild, Über uns, Kategorien) */
+const SITE_IMG = {
+  hero: "/images/seite/startbild.jpg",
+  "ed-about": "/images/seite/ueber-uns.jpg",
+  "cat-damen": "/images/seite/kategorie-damen.jpg",
+  "cat-herren": "/images/seite/kategorie-herren.jpg",
+  "cat-acc": "/images/seite/kategorie-accessoires.jpg"
+};
+/* Nachweis der Platzhalterfotos (Wikimedia Commons). Wird ein Foto ersetzt, verschwindet sein Eintrag automatisch. */
+const CREDITS = [{"bild": "/images/produkte/burberry-trench.jpg", "key": "burberry-trench", "artist": "Unbekannt", "lizenz": "Public domain", "quelle": "https://commons.wikimedia.org/wiki/File:Trenchcoat_worn_by_President_Gerald_R._Ford.jpg"}, {"bild": "/images/produkte/burberry-trench-2.jpg", "key": "burberry-trench-2", "artist": "MB-one", "lizenz": "CC BY-SA 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Burberrys_Trenchcoat.jpg"}, {"bild": "/images/produkte/maxmara-wollmantel.jpg", "key": "maxmara-wollmantel", "artist": "Photographer for the Rhode Island School of Design Museum of", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:Pierre_Balmain,_Swing_Coat_(1954-56)_02.jpg"}, {"bild": "/images/produkte/maxmara-wollmantel-2.jpg", "key": "maxmara-wollmantel-2", "artist": "Photographer for the Rhode Island School of Design Museum of", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:Pierre_Balmain,_Swing_Coat_(1954-56)_03.jpg"}, {"bild": "/images/produkte/rl-zopfstrick.jpg", "key": "rl-zopfstrick", "artist": "Acabashi", "lizenz": "CC BY-SA 4.0", "quelle": "https://commons.wikimedia.org/wiki/File:Epping_Foresters_Cricket_Club_Jersey_cable_knit_cricket_pullover.jpg"}, {"bild": "/images/produkte/barbour-beaufort.jpg", "key": "barbour-beaufort", "artist": "Robert Sheie, Menswear Market", "lizenz": "CC BY 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Green_Barbour_Endurance_jacket.jpg"}, {"bild": "/images/produkte/barbour-beaufort-2.jpg", "key": "barbour-beaufort-2", "artist": "Steven Lilley", "lizenz": "CC BY-SA 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Barbour_jacket_02.jpg"}, {"bild": "/images/produkte/acne-jeans.jpg", "key": "acne-jeans", "artist": "William Christiansen", "lizenz": "CC BY 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Jeans_and_Boots,_a_perfect_pair.jpg"}, {"bild": "/images/produkte/acne-jeans-2.jpg", "key": "acne-jeans-2", "artist": "Olgierd Rudak", "lizenz": "CC BY-SA 4.0", "quelle": "https://commons.wikimedia.org/wiki/File:Broken_twill_denim_Wrangler_13MWZ_jeans_(2026-01-21).jpg"}, {"bild": "/images/produkte/hermes-carre.jpg", "key": "hermes-carre", "artist": "Samuel Faigin", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:Samuel_Faigin,_Blue_Silk_Scarf,_c._1937,_NGA_12782.jpg"}, {"bild": "/images/produkte/hermes-carre-2.jpg", "key": "hermes-carre-2", "artist": "Minderbinder", "lizenz": "CC BY 3.0", "quelle": "https://commons.wikimedia.org/wiki/File:Hermes_scarves_at_Zurich_airport.JPG"}, {"bild": "/images/produkte/tweed-sakko.jpg", "key": "tweed-sakko", "artist": "Robert Sheie from Minneapolis, USA", "lizenz": "CC BY 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Polo_Ralph_Lauren_-_Sport_Coat.jpg"}, {"bild": "/images/produkte/tweed-sakko-2.jpg", "key": "tweed-sakko-2", "artist": "PKM", "lizenz": "CC BY-SA 3.0", "quelle": "https://commons.wikimedia.org/wiki/File:Tailored_sport_coat_partial_lining.jpg"}, {"bild": "/images/produkte/cos-kleid.jpg", "key": "cos-kleid", "artist": "Staff photographer, Rhode Island School of Design Museum of", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:2014_Missoni_knitted_dress_01.jpg"}, {"bild": "/images/produkte/cos-kleid-2.jpg", "key": "cos-kleid-2", "artist": "Staff photographer, Rhode Island School of Design Museum of", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:2014_Missoni_knitted_dress_03.jpg"}, {"bild": "/images/produkte/apc-tasche.jpg", "key": "apc-tasche", "artist": "Photographer for the Rhode Island School of Design - Museum", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:1935-45_Prada_handbag,_tooled_and_gilded_leather_02.jpg"}, {"bild": "/images/produkte/apc-tasche-2.jpg", "key": "apc-tasche-2", "artist": "Photographer for the Rhode Island School of Design - Museum", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:1935-45_Prada_handbag,_tooled_and_gilded_leather_03.jpg"}, {"bild": "/images/produkte/boss-sakko.jpg", "key": "boss-sakko", "artist": "ajay_suresh", "lizenz": "CC BY 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Navy_Blazer_(51011161195).jpg"}, {"bild": "/images/produkte/boss-sakko-2.jpg", "key": "boss-sakko-2", "artist": "サフィル", "lizenz": "CC BY-SA 4.0", "quelle": "https://commons.wikimedia.org/wiki/File:Navy_blazer_with_metal_buttons.jpg"}, {"bild": "/images/produkte/marant-bluse.jpg", "key": "marant-bluse", "artist": "Wilhelm Storm", "lizenz": "CC BY 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:A_white_blouse_with_blue_flowers.jpg"}, {"bild": "/images/produkte/marant-bluse-2.jpg", "key": "marant-bluse-2", "artist": "Andrew Krizhanovsky", "lizenz": "Public domain", "quelle": "https://commons.wikimedia.org/wiki/File:White_blouse_collar_and_flower_decoration.jpg"}, {"bild": "/images/produkte/churchs-derby.jpg", "key": "churchs-derby", "artist": "Martin Kozák", "lizenz": "Public domain", "quelle": "https://commons.wikimedia.org/wiki/File:Mens%27_ballroom_shoes,_Eurodance_CZ.jpg"}, {"bild": "/images/produkte/churchs-derby-2.jpg", "key": "churchs-derby-2", "artist": "עמית לונן", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:DerbyShoes.jpg"}, {"bild": "/images/produkte/cg-daune.jpg", "key": "cg-daune", "artist": "Ralph Schulz", "lizenz": "CC BY-SA 3.0", "quelle": "https://commons.wikimedia.org/wiki/File:Men%27s_black_PVC_down_jacket_02.jpg"}, {"bild": "/images/produkte/ganni-cardigan.jpg", "key": "ganni-cardigan", "artist": "Unbekannt", "lizenz": "Public domain", "quelle": "https://commons.wikimedia.org/wiki/File:White_Military_Cardigan.jpg"}, {"bild": "/images/produkte/longchamp-tasche.jpg", "key": "longchamp-tasche", "artist": "Trougnouf (Benoit Brummer), Les cuirs d'Agathe", "lizenz": "CC BY 4.0", "quelle": "https://commons.wikimedia.org/wiki/File:Leather_handbag_by_Les_cuirs_d%27Agathe_(DSC07738).jpg"}, {"bild": "/images/produkte/rl-oxford.jpg", "key": "rl-oxford", "artist": "Ashjini", "lizenz": "CC BY-SA 3.0", "quelle": "https://commons.wikimedia.org/wiki/File:Arnaud_Rousseau_Dress_Shirt_with_a_Modern_Spread_Collar.jpg"}, {"bild": "/images/produkte/rl-oxford-2.jpg", "key": "rl-oxford-2", "artist": "Chris Hoare", "lizenz": "CC BY 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Oxford_cloth.jpg"}, {"bild": "/images/seite/kategorie-damen.jpg", "key": "cat-damen", "artist": "Photographer for the Rhode Island School of Design Museum of", "lizenz": "CC0", "quelle": "https://commons.wikimedia.org/wiki/File:Pierre_Balmain,_Swing_Coat_(1954-56)_01.jpg"}, {"bild": "/images/seite/kategorie-herren.jpg", "key": "cat-herren", "artist": "devin rowe", "lizenz": "CC BY 3.0", "quelle": "https://commons.wikimedia.org/wiki/File:Tweed_jacket_edited.jpg"}, {"bild": "/images/seite/kategorie-accessoires.jpg", "key": "cat-acc", "artist": "Ch Th Jo", "lizenz": "CC BY-SA 3.0", "quelle": "https://commons.wikimedia.org/wiki/File:Mens_brown_derby_leather_shoes.jpg"}, {"bild": "/images/seite/startbild.jpg", "key": "hero", "artist": "Luigi Morante from Paris, France", "lizenz": "CC BY 2.0", "quelle": "https://commons.wikimedia.org/wiki/File:Man_in_a_Raincoat_(3304386668).jpg"}, {"bild": "/images/seite/ueber-uns.jpg", "key": "ed-about", "artist": "Володимир Халак", "lizenz": "CC BY-SA 4.0", "quelle": "https://commons.wikimedia.org/wiki/File:Harris_Tweed_Black_Grey.jpg"}];
+</script>
+<script>
+/* =========================================================
+   EINSTELLUNGEN
+   ========================================================= */
+let SHOP = { name:"luxu_refind", shipping:4.90, freeShippingFrom:150, newCount:3, note:"", heroLine:"Herbst/Winter 2026" };
+
+/* =========================================================
+   PRODUKTE – werden aus data/produkte.json geladen.
+   Justus und Janno pflegen sie im Portal unter /admin.
+   ========================================================= */
+let PRODUCTS = [];
+function mapProduct(x){
+  return {
+    id:x.id, sold:!!x.verkauft, brand:x.marke||"", title:x.titel||"", price:Number(x.preis)||0,
+    category:x.kategorie||"herren", type:x.typ||"jacke", size:x.groesse||"", condition:x.zustand||"Sehr gut",
+    fit:x.passform||"Fällt normal aus", material:x.material||"", measures:(x.masse||[]).map(m=>[m.bezeichnung,m.wert]),
+    desc:x.beschreibung||"", flaws:(x.auffaelligkeiten||[]).filter(Boolean), img:x.bild||"", alt:x.bild2||null,
+    added:String(x.eingestellt||"").slice(0,10), sku:x.artikelnummer||""
+  };
+}
+const AVAILABLE = () => PRODUCTS.filter(p=>!p.sold && p.id && p.img);
+const CATS = {
+  damen:{label:"Damen", intro:"Mäntel, Strick und Klassiker, jedes Teil geprüft.", img:"cat-damen"},
+  herren:{label:"Herren", intro:"Jacken, Sakkos und Schuhe, die noch viele Jahre halten.", img:"cat-herren"},
+  accessoires:{label:"Accessoires", intro:"Taschen und Tücher, geprüft auf Echtheit und Zustand.", img:"cat-acc"}
+};
+const TYPES = {
+  jacken:{l:"Mäntel & Jacken", t:["mantel","jacke"]}, strick:{l:"Strick", t:["strick"]}, hemden:{l:"Hemden & Blusen", t:["hemd"]},
+  kleider:{l:"Kleider", t:["kleid"]}, hosen:{l:"Hosen", t:["hose"]}, schuhe:{l:"Schuhe", t:["schuhe"]}, taschen:{l:"Taschen", t:["tasche"]}, tuecher:{l:"Tücher", t:["tuch"]}
+};
+const CONDITIONS = ["Gut","Sehr gut","Neuwertig"];
+const CONDITION_TEXT = {"Neuwertig":"Kaum oder gar nicht getragen, ohne sichtbare Spuren.","Sehr gut":"Getragen, aber ohne nennenswerte Mängel.","Gut":"Getragen, mit kleinen sichtbaren Gebrauchsspuren."};
+
+/* ===== Hilfsfunktionen ===== */
+const eur  = n => new Intl.NumberFormat("de-DE",{style:"currency",currency:"EUR"}).format(n);
+const eur0 = n => new Intl.NumberFormat("de-DE",{style:"currency",currency:"EUR",maximumFractionDigits:0}).format(n);
+const slug = s => s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/&/g,"und").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const esc  = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const byId = id => PRODUCTS.find(p=>p.id===id);
+const newest = () => AVAILABLE().sort((a,b)=>b.added.localeCompare(a.added));
+const newIds = () => newest().slice(0,SHOP.newCount).map(p=>p.id);
+const brands = () => [...new Set(AVAILABLE().map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,"de"));
+const fmtDate = d => new Date(d).toLocaleDateString("de-DE",{day:"numeric",month:"long",year:"numeric"});
+const countIn = c => AVAILABLE().filter(p=>p.category===c).length;
+/* Fotos über das Bild-CDN von Netlify verkleinert ausliefern (schnell auch bei großen Handyfotos) */
+const ON_NETLIFY = /^https?:$/.test(location.protocol) && !/^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+const pic = (src, w) => (ON_NETLIFY && src && src.startsWith("/")) ? `/.netlify/images?url=${encodeURIComponent(src)}&w=${w}&q=78` : src;
+const FALLBACK = src => `onerror="this.onerror=null;this.src='${src}'"`;
+const BACK_ICON = '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3 5 8l5 5"/></svg>';
+
+const card = p => `
+  <a class="card" href="#produkt-${p.id}">
+    <div class="im">${newIds().includes(p.id)?'<span class="tag">Neu</span>':""}<img src="${pic(p.img,700)}" ${FALLBACK(p.img)} alt="${esc(p.brand)} ${esc(p.title)}" loading="lazy">${p.alt?`<img class="alt" src="${pic(p.alt,700)}" ${FALLBACK(p.alt)} alt="" loading="lazy">`:""}</div>
+    <div class="meta"><span class="b">${esc(p.brand)}</span><span>${eur(p.price)}</span></div>
+    <div class="t">${esc(p.title)}</div>
+    <div class="t">Größe ${esc(p.size)}, ${esc(p.condition.toLowerCase())}</div>
+  </a>`;
+
+/* ===== Warenkorb ===== */
+let cart = [];
+const inCart = id => cart.includes(id);
+function totals(){ const sub=cart.reduce((s,id)=>s+byId(id).price,0); const ship=cart.length===0?0:(sub>=SHOP.freeShippingFrom?0:SHOP.shipping); return {sub,ship,total:sub+ship}; }
+function renderCart(){
+  document.getElementById("count").textContent = cart.length;
+  document.getElementById("dtitle").textContent = `Warenkorb (${cart.length})`;
+  const items=document.getElementById("ditems"), foot=document.getElementById("dfoot");
+  if(!cart.length){ items.innerHTML=`<p class="empty">Dein Warenkorb ist leer.<br><br><a class="u" href="#neu">Alle Stücke ansehen</a></p>`; foot.innerHTML=""; return; }
+  items.innerHTML = cart.map(id=>{const p=byId(id);return `<div class="ci"><div class="im"><img src="${pic(p.img,200)}" ${FALLBACK(p.img)} alt=""></div><div><div class="b">${esc(p.brand)}</div><div class="m">${esc(p.title)}</div><div class="m">Größe ${esc(p.size)}</div><button data-remove="${p.id}">Entfernen</button></div><div>${eur(p.price)}</div></div>`}).join("");
+  const t=totals();
+  foot.innerHTML = `<div class="r"><span>Zwischensumme</span><span>${eur(t.sub)}</span></div><div class="r"><span>Versand</span><span>${t.ship===0?"kostenlos":eur(t.ship)}</span></div><div class="r t"><span>Gesamt</span><span>${eur(t.total)}</span></div><a class="btn fill" href="#kasse">Zur Kasse</a><p class="note2">${t.sub<SHOP.freeShippingFrom?`Ab ${eur0(SHOP.freeShippingFrom)} versenden wir kostenlos. `:""}Einzelstücke werden erst mit der Bezahlung für dich reserviert.</p>`;
+}
+const drawer=document.getElementById("drawer"), overlay=document.getElementById("overlay"), mpanel=document.getElementById("mpanel");
+let lastFocus=null;
+function openCart(){ lastFocus=document.activeElement; drawer.classList.add("open"); overlay.classList.add("open"); drawer.setAttribute("aria-hidden","false"); document.getElementById("closecart").focus(); }
+function closeCart(){ drawer.classList.remove("open"); drawer.setAttribute("aria-hidden","true"); closeMenu(true); overlay.classList.remove("open"); if(lastFocus) lastFocus.focus(); }
+function openMenu(){ mpanel.classList.add("open"); overlay.classList.add("open"); }
+function closeMenu(keep){ mpanel.classList.remove("open"); if(!keep && !drawer.classList.contains("open")) overlay.classList.remove("open"); }
+document.getElementById("cartbtn").addEventListener("click",openCart);
+document.getElementById("closecart").addEventListener("click",closeCart);
+document.getElementById("menubtn").addEventListener("click",openMenu);
+document.getElementById("mclose").addEventListener("click",()=>closeMenu());
+overlay.addEventListener("click",closeCart);
+document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeCart(); });
+drawer.addEventListener("click",e=>{ const r=e.target.closest("[data-remove]"); if(r){ cart=cart.filter(x=>x!==r.dataset.remove); renderCart(); route(); } });
+
+/* ===== Seiten ===== */
+let homeFilter = "";
+function homeGrid(){
+  const list = newest().filter(p=>!homeFilter || p.category===homeFilter).slice(0,8);
+  return list.map(card).join("");
+}
+function pageHome(){
+  const chip = (k,l,n) => `<button class="chip ${homeFilter===k?"on":""}" data-hf="${k}">${l} ${n}</button>`;
+  return `
+  <section class="hero">
+    <img src="${SITE_IMG.hero}" alt="Unscharfes Schwarz-Weiß-Foto einer Person in Mantel und Hut">
+    <h1 class="wm">luxu_refind.</h1>
+    <div class="foot px"><span>${esc(SHOP.heroLine)}</span><a class="u" href="#neu">Neu eingetroffen ansehen</a></div>
+  </section>
+
+  <section class="sec px">
+    <div class="bar">
+      <h2>Neu eingetroffen</h2>
+      <div class="chips">${chip("","Alle",AVAILABLE().length)}${chip("damen","Damen",countIn("damen"))}${chip("herren","Herren",countIn("herren"))}${chip("accessoires","Accessoires",countIn("accessoires"))}</div>
+      <a class="right u" href="#${homeFilter||"neu"}">Alle ansehen</a>
+    </div>
+    <div class="grid" id="homegrid">${homeGrid()}</div>
+  </section>
+
+  <section class="about">
+    <div class="im"><img src="${SITE_IMG["ed-about"]}" alt="Nahaufnahme eines Tweed-Stoffs mit Fischgratmuster" loading="lazy"></div>
+    <div class="txt">
+      <span class="small">Über luxu_refind</span>
+      <div>
+        <h3>Geprüfte Designermode aus zweiter Hand.</h3>
+        <p>Justus und Janno suchen ausgewählte Stücke, prüfen Etiketten, Nähte und Materialien und beschreiben jedes Teil so, wie es ist.</p>
+      </div>
+      <a class="u" href="#ueber-uns">Mehr erfahren</a>
+    </div>
+  </section>
+
+  <section class="px">
+    <div class="cats">
+      ${Object.entries(CATS).map(([k,c])=>`<a class="cat" href="#${k}"><div class="im"><img src="${SITE_IMG[c.img]}" alt="" loading="lazy"></div><div class="l"><span>${c.label}</span><span>${countIn(k)} Stücke</span></div></a>`).join("")}
+    </div>
+    <div class="brands"><span>Marken</span>${brands().map(b=>`<a href="#marke-${slug(b)}">${esc(b)}</a>`).join("")}</div>
+  </section>`;
+}
+
+let filterState = {type:"",brand:"",size:"",sort:"neu"};
+function pageList(title, intro, items, crumbs){
+  const typeOpts = Object.entries(TYPES).filter(([k,g])=>items.some(p=>g.t.includes(p.type)));
+  const sizes = [...new Set(items.map(p=>p.size))];
+  const brandList = [...new Set(items.map(p=>p.brand))].sort((a,b)=>a.localeCompare(b,"de"));
+  let list = items.filter(p=>(!filterState.type||TYPES[filterState.type].t.includes(p.type))&&(!filterState.brand||p.brand===filterState.brand)&&(!filterState.size||p.size===filterState.size));
+  if(filterState.sort==="neu") list.sort((a,b)=>b.added.localeCompare(a.added));
+  if(filterState.sort==="preis-auf") list.sort((a,b)=>a.price-b.price);
+  if(filterState.sort==="preis-ab") list.sort((a,b)=>b.price-a.price);
+  const opt=(v,l,c)=>`<option value="${esc(v)}"${v===c?" selected":""}>${esc(l)}</option>`;
+  return `
+  <div class="px lhead"><div class="crumb">${crumbs}</div><h1>${esc(title)}</h1>${intro?`<p>${esc(intro)}</p>`:""}</div>
+  <div class="px"><div class="filters" role="group" aria-label="Filter">
+    ${typeOpts.length>1?`<div class="chips">${[["","Alle"]].concat(typeOpts.map(([k,g])=>[k,g.l])).map(([k,l])=>`<button class="chip ${filterState.type===k?"on":""}" data-ft="${k}">${esc(l)}</button>`).join("")}</div>`:""}
+    ${brandList.length>1?`<label>Marke <select data-f="brand">${opt("","Alle",filterState.brand)}${brandList.map(b=>opt(b,b,filterState.brand)).join("")}</select></label>`:""}
+    <label>Größe <select data-f="size">${opt("","Alle",filterState.size)}${sizes.map(s=>opt(s,s,filterState.size)).join("")}</select></label>
+    <label>Sortieren <select data-f="sort">${opt("neu","Neueste",filterState.sort)}${opt("preis-auf","Preis aufsteigend",filterState.sort)}${opt("preis-ab","Preis absteigend",filterState.sort)}</select></label>
+    <span class="count">${list.length} ${list.length===1?"Stück":"Stücke"}</span>
+  </div></div>
+  <div class="px listwrap">${list.length?`<div class="grid">${list.map(card).join("")}</div>`:`<p class="empty">Für diese Auswahl gibt es gerade keine Stücke.</p>`}</div>`;
+}
+
+function pageProduct(p){
+  if(!p) return pageNotFound();
+  const level = CONDITIONS.indexOf(p.condition);
+  const imgs = [p.img].concat(p.alt?[p.alt]:[]);
+  const related = AVAILABLE().filter(x=>x.category===p.category&&x.id!==p.id).slice(0,4);
+  const rows = p.measures.filter(m=>m[0]||m[1]).map(m=>[m[0]||"Maße", m[1]||""]);
+  if(p.material) rows.push(["Material", p.material]);
+  if(p.category!=="accessoires") rows.push(["Passform", p.fit]);
+  if(p.sku) rows.push(["Artikelnummer", p.sku]);
+  return `
+  <div class="px">
+    <div class="crumb" style="padding-top:14px"><a href="#${p.category}">${CATS[p.category].label}</a> / <a href="#marke-${slug(p.brand)}">${esc(p.brand)}</a></div>
+    <div class="pdp">
+      <div>
+        <div class="stack" id="stack">${imgs.map((s,i)=>`<div class="im"><img src="${pic(s,1200)}" ${FALLBACK(s)} alt="${esc(p.brand)} ${esc(p.title)}${i?", weitere Ansicht":""}"></div>`).join("")}</div>
+        ${imgs.length>1?`<div class="dots" id="dots">${imgs.map((_,i)=>`<i class="${i?"":"on"}"></i>`).join("")}</div>`:""}
+      </div>
+      <div class="info">
+        <div class="ptop"><h1>${esc(p.brand)}<span>${esc(p.title)}</span></h1><span class="badge">${p.sold?"Verkauft":"Einzelstück"}</span></div>
+        <div class="price">${eur(p.price)}</div>
+        <div class="small">zzgl. <a href="#versand">Versandkosten</a></div>
+        <div class="lab">Größe</div><span class="size">${esc(p.size)}</span>
+        ${p.sold ? `<div class="one">Dieses Stück ist leider schon verkauft.</div>
+        <div class="btns"><a class="btn fill" href="#${p.category}" style="grid-column:1/-1">Ähnliche Stücke ansehen</a></div>` : `<div class="one">Einzelstück, nur 1 verfügbar</div>
+        <div class="btns">
+          ${inCart(p.id)?`<button class="btn" id="opencart2">Im Warenkorb</button>`:`<button class="btn" data-add="${p.id}">In den Warenkorb</button>`}
+          <button class="btn fill" data-buy="${p.id}">Sofort kaufen</button>
+          <a class="more" href="#versand">Weitere Bezahlmöglichkeiten</a>
+        </div>`}
+        <div class="rows">
+          <details class="acc" open><summary>Echtheit garantiert</summary><div class="acc-body"><p>Etiketten, Nähte und Materialien wurden vor dem Einstellen von Justus und Janno geprüft. ${p.added?`Geprüft am ${fmtDate(p.added)}.`:""}</p></div></details>
+          <details class="acc" open><summary>Rückgabe</summary><div class="acc-body"><p>14 Tage Widerrufsrecht ab Erhalt der Ware. Mehr dazu in der <a href="#widerruf">Widerrufsbelehrung</a>.</p><p>Versand innerhalb Deutschlands ${eur(SHOP.shipping)}, ab ${eur0(SHOP.freeShippingFrom)} kostenlos.</p></div></details>
+          ${rows.map(([k,v])=>`<div class="row"><span>${esc(k)}</span><span>${esc(v)}</span></div>`).join("")}
+          <div class="condrow">
+            <div class="h"><span>Zustand</span><span>${esc(p.condition)}</span></div>
+            <div class="cond" aria-hidden="true">${CONDITIONS.map((_,i)=>`<i class="${i<=level?"on":""}"></i>`).join("")}</div>
+            <div class="condl" aria-hidden="true">${CONDITIONS.map(c=>`<span class="${c===p.condition?"c":""}">${c}</span>`).join("")}</div>
+            <p>${CONDITION_TEXT[p.condition]} ${p.flaws.length?`Uns ist aufgefallen: ${esc(p.flaws.join(", "))}.`:"Uns sind keine Mängel aufgefallen."}</p>
+            ${p.desc?`<p>${esc(p.desc)}</p>`:""}
+          </div>
+        </div>
+      </div>
+    </div>
+    ${related.length?`<section class="related"><h2>Mehr aus ${CATS[p.category].label}</h2><div class="grid">${related.map(card).join("")}</div></section>`:""}
+  </div>`;
+}
+
+function pageBrands(){
+  return `<div class="px lhead"><div class="crumb"><a href="#start">Start</a> / Marken</div><h1>Marken</h1><p>Alle Marken, von denen gerade Stücke online sind.</p></div>
+  <div class="px">${brands().map(b=>`<a class="row" href="#marke-${slug(b)}"><span>${esc(b)}</span><span>${AVAILABLE().filter(p=>p.brand===b).length} ${AVAILABLE().filter(p=>p.brand===b).length===1?"Stück":"Stücke"}</span></a>`).join("")}</div>`;
+}
+
+function pageCheckout(){
+  const t=totals();
+  if(!cart.length) return `<div class="px textpage"><h1>Kasse</h1><p>Dein Warenkorb ist leer.</p><p><a class="u" href="#neu">Alle Stücke ansehen</a></p></div>`;
+  return `<div class="px textpage"><div class="crumb">Kasse</div><h1>Kasse</h1>
+    <div class="sum">${cart.map(id=>{const p=byId(id);return `<div class="r"><span>${esc(p.brand)}, ${esc(p.title)}</span><span>${eur(p.price)}</span></div>`}).join("")}
+    <div class="r"><span>Versand</span><span>${t.ship===0?"kostenlos":eur(t.ship)}</span></div><div class="r t"><span>Gesamt</span><span>${eur(t.total)}</span></div></div>
+    <div class="ph"><p><strong>Platzhalter: Bezahlung</strong></p><p>Hier kommt später die Bezahlung hin, zum Beispiel über Stripe, PayPal oder Shopify. Bis dahin ist keine Bestellung möglich.</p><p>Vor dem Button stehen dann Lieferadresse, Zahlungsart, Hinweise auf AGB und Widerrufsbelehrung sowie die gesonderte Vereinbarung zur verkürzten Gewährleistung für Gebrauchtware.</p></div>
+    <button class="btn fill" disabled style="width:100%">Zahlungspflichtig bestellen</button></div>`;
+}
+
+const creditLabel = c => {
+  const p = PRODUCTS.find(x=>x.img===c.bild||x.alt===c.bild);
+  if(p) return `${p.brand}, ${p.title}${p.alt===c.bild?" (zweites Bild)":""}`;
+  return ({hero:"Startbild","ed-about":"Bild „Über luxu_refind“","cat-damen":"Kategorie Damen","cat-herren":"Kategorie Herren","cat-acc":"Kategorie Accessoires"})[c.key]||"Bild";
+};
+const usedCredits = () => { const used = new Set(Object.values(SITE_IMG).concat(PRODUCTS.flatMap(p=>[p.img,p.alt]))); return CREDITS.filter(c=>used.has(c.bild)); };
+const legalPages = () => ({
+  impressum:{t:"Impressum", b:`<div class="ph"><p><strong>Platzhalter: Impressum</strong></p><p>Vollständige Namen von Justus und Janno, Name der GbR, ladungsfähige Anschrift, E-Mail und Telefon, gegebenenfalls Umsatzsteuer-ID.</p></div>`},
+  datenschutz:{t:"Datenschutz", b:`<div class="ph"><p><strong>Platzhalter: Datenschutzerklärung</strong></p><p>Welche Daten der Shop verarbeitet, etwa durch Hosting, Zahlungsanbieter, eingebundene Schriften und Versand. Am besten über einen Rechtstexte-Service erstellen.</p></div>`},
+  agb:{t:"AGB", b:`<div class="ph"><p><strong>Platzhalter: Allgemeine Geschäftsbedingungen</strong></p><p>Vertragsschluss, Preise, Lieferung, Zahlung und Gewährleistung, inklusive der gesonderten Vereinbarung zur verkürzten Gewährleistung für Gebrauchtware.</p></div>`},
+  widerruf:{t:"Rückgabe & Widerruf", b:`<p>Du kannst den Kauf innerhalb von 14 Tagen nach Erhalt widerrufen.</p><div class="ph"><p><strong>Platzhalter: Widerrufsbelehrung und Muster-Widerrufsformular</strong></p><p>Seit dem 19. Juni 2026 muss der Widerruf außerdem direkt online erklärt werden können. Der Button unten ist dafür vorgesehen.</p></div><button class="btn" disabled style="max-width:320px;width:100%">Vertrag widerrufen</button>`},
+  versand:{t:"Versand & Zahlung", b:`<p>Versand innerhalb Deutschlands: ${eur(SHOP.shipping)}, ab ${eur0(SHOP.freeShippingFrom)} Bestellwert kostenlos.</p><div class="ph"><p><strong>Platzhalter: Lieferzeiten, Versandländer und Zahlungsarten</strong></p><p>Wird ergänzt, sobald Versanddienstleister und Zahlungsanbieter feststehen.</p></div>`},
+  "ueber-uns":{t:"Über luxu_refind", b:`<p>Hinter luxu_refind stehen Justus und Janno. Die beiden suchen Designer- und Premiummode aus zweiter Hand, prüfen jedes Teil und beschreiben es so, wie es ist.</p><div class="ph"><p><strong>Platzhalter: eure Geschichte</strong></p><p>Wie alles angefangen hat und wie ihr die Stücke auswählt. Ein Foto von euch beiden macht die Seite persönlicher.</p></div>`},
+  bildnachweis:{t:"Bildnachweis", b:`<p>Einige Fotos sind Platzhalter von Wikimedia Commons unter freien Lizenzen. Sie zeigen nicht die tatsächlichen Artikel. Startbild und Kategoriebilder wurden bearbeitet (Ausschnitt, Unschärfe, Schwarz-Weiß).</p>${usedCredits().length?`<ul class="credits">${usedCredits().map(c=>`<li>${esc(creditLabel(c))}: ${esc(c.artist)}, ${esc(c.lizenz)}. <a href="${esc(c.quelle)}" target="_blank" rel="noopener">Quelle</a></li>`).join("")}</ul>`:"<p>Alle Fotos stammen von luxu_refind.</p>"}`}
+});
+const pageText = k => { const L=legalPages()[k]; return `<div class="px textpage"><div class="crumb">${esc(L.t)}</div><h1>${esc(L.t)}</h1>${L.b}</div>`; };
+const pageNotFound = () => `<div class="px textpage"><h1>Nicht gefunden</h1><p>Dieses Stück ist vielleicht schon verkauft. <a class="u" href="#neu">Alle Stücke ansehen</a></p></div>`;
+
+/* ===== Router ===== */
+let lastPath=null, backStack=[], goingBack=false;
+function backbar(a,b){ let fb="start"; if(a==="produkt"){ const p=byId(b); if(p) fb=p.category; } return `<div class="px backbar"><button class="back" data-back="${fb}">${BACK_ICON}Zurück</button></div>`; }
+function route(){
+  const name = routeName || "start";
+  let a = name==="start" ? "" : name, b;
+  if(name.startsWith("produkt-")){ a="produkt"; b=name.slice(8); }
+  else if(name.startsWith("marke-")){ a="marke"; b=name.slice(6); }
+  else { const m=name.match(/^(damen|herren|accessoires)-([a-z]+)$/); if(m && TYPES[m[2]]){ a=m[1]; b=m[2]; } }
+  const pageChanged = name!==lastPath;
+  if(pageChanged){ filterState={type:(b&&CATS[a])?b:"",brand:"",size:"",sort:"neu"}; }
+  if(pageChanged && lastPath!==null && !goingBack){ if(backStack[backStack.length-1]===name) backStack.pop(); else backStack.push(lastPath); }
+  goingBack=false;
+
+  let html, title="luxu_refind. – Designermode aus zweiter Hand";
+  if(!a) html=pageHome();
+  else if(a==="neu"){ html=pageList("Neu eingetroffen","Alle Stücke, die neuesten zuerst.",AVAILABLE(),`<a href="#start">Start</a> / Neu`); title="Neu – luxu_refind."; }
+  else if(CATS[a]){ html=pageList(CATS[a].label,CATS[a].intro,AVAILABLE().filter(p=>p.category===a),`<a href="#start">Start</a> / ${CATS[a].label}`); title=CATS[a].label+" – luxu_refind."; }
+  else if(a==="marken"){ html=pageBrands(); title="Marken – luxu_refind."; }
+  else if(a==="marke"){ const br=brands().find(x=>slug(x)===b); html=br?pageList(br,"",AVAILABLE().filter(p=>p.brand===br),`<a href="#start">Start</a> / <a href="#marken">Marken</a> / ${esc(br)}`):pageNotFound(); if(br) title=br+" – luxu_refind."; }
+  else if(a==="produkt"){ const p=byId(b); html=pageProduct(p); if(p) title=`${p.brand} ${p.title} – luxu_refind.`; }
+  else if(a==="kasse"){ html=pageCheckout(); title="Kasse – luxu_refind."; }
+  else if(legalPages()[a]){ html=pageText(a); title=legalPages()[a].t+" – luxu_refind."; }
+  else html=pageNotFound();
+
+  const app=document.getElementById("app");
+  app.className = a ? "sub" : "";
+  app.innerHTML = (a?backbar(a,b):"") + html;
+  document.title = title;
+  document.body.classList.toggle("is-home", !a);
+  document.querySelectorAll(".nav a").forEach(l=>{ if(l.dataset.r===a) l.setAttribute("aria-current","page"); else l.removeAttribute("aria-current"); });
+  if(pageChanged){ window.scrollTo(0,0); closeMenu(); }
+  lastPath=name;
+  const st=document.getElementById("stack"), dots=document.getElementById("dots");
+  if(st&&dots) st.addEventListener("scroll",()=>{ const i=Math.round(st.scrollLeft/st.clientWidth); dots.querySelectorAll("i").forEach((d,k)=>d.classList.toggle("on",k===i)); },{passive:true});
+  updateTopbar();
+}
+
+/* Kopfzeile: über dem Startbild durchsichtig, Logo erscheint beim Scrollen */
+const topbar=document.getElementById("topbar");
+function updateTopbar(){
+  const hero=document.querySelector(".hero");
+  const over = document.body.classList.contains("is-home") && hero && scrollY < hero.offsetHeight - 110;
+  topbar.classList.toggle("over", !!over);
+}
+addEventListener("scroll",updateTopbar,{passive:true});
+
+/* Klicks auf der Seite */
+const appEl=document.getElementById("app");
+appEl.addEventListener("click",e=>{
+  const add=e.target.closest("[data-add]"); if(add && !byId(add.dataset.add)?.sold){ if(!inCart(add.dataset.add)) cart.push(add.dataset.add); renderCart(); openCart(); route(); return; }
+  const buy=e.target.closest("[data-buy]"); if(buy && !byId(buy.dataset.buy)?.sold){ if(!inCart(buy.dataset.buy)) cart.push(buy.dataset.buy); renderCart(); navigate("kasse"); return; }
+  if(e.target.closest("#opencart2")){ openCart(); return; }
+  const bk=e.target.closest("[data-back]"); if(bk){ const prev=backStack.pop(); goingBack=true; navigate(prev||bk.dataset.back); return; }
+  const hf=e.target.closest("[data-hf]"); if(hf){ homeFilter=hf.dataset.hf; document.getElementById("homegrid").innerHTML=homeGrid(); document.querySelectorAll("[data-hf]").forEach(c=>c.classList.toggle("on",c.dataset.hf===homeFilter)); const all=document.querySelector(".bar .right"); if(all) all.setAttribute("href","#"+(homeFilter||"neu")); return; }
+  const ft=e.target.closest("[data-ft]"); if(ft){ filterState.type=ft.dataset.ft; route(); return; }
+});
+appEl.addEventListener("change",e=>{ const f=e.target.dataset.f; if(!f) return; filterState[f]=e.target.value; route(); });
+
+/* ===== Navigation ===== */
+let routeName = location.hash.slice(1) || "start";
+function navigate(n){ routeName=n; try{ if(location.hash!=="#"+n) location.hash=n; }catch(e){} if(location.hash!=="#"+n) route(); }
+document.addEventListener("click",e=>{
+  const l=e.target.closest('a[href^="#"]'); if(!l||e.defaultPrevented) return;
+  const n=l.getAttribute("href").slice(1); if(!n) return;
+  e.preventDefault(); if(drawer.classList.contains("open")) closeCart(); navigate(n);
+});
+addEventListener("hashchange",()=>{ routeName=location.hash.slice(1)||"start"; route(); });
+async function init(){
+  try{
+    const [pr, st] = await Promise.all([
+      fetch("/data/produkte.json",{cache:"no-store"}).then(r=>{ if(!r.ok) throw new Error(r.status); return r.json(); }),
+      fetch("/data/einstellungen.json",{cache:"no-store"}).then(r=>r.ok?r.json():{}).catch(()=>({}))
+    ]);
+    PRODUCTS = (pr.produkte||[]).map(mapProduct);
+    SHOP = { ...SHOP,
+      shipping: st.versandkosten ?? SHOP.shipping, freeShippingFrom: st.kostenlos_ab ?? SHOP.freeShippingFrom,
+      newCount: st.neu_anzahl ?? SHOP.newCount, note: st.hinweis ?? SHOP.note, heroLine: st.startbild_unterzeile ?? SHOP.heroLine };
+  }catch(err){
+    document.getElementById("app").innerHTML = `<div class="px textpage" style="padding-top:160px"><h1>Gleich wieder da.</h1><p>Die Stücke konnten gerade nicht geladen werden. Bitte lade die Seite in einem Moment neu.</p></div>`;
+    return;
+  }
+  const note = document.getElementById("note");
+  if(SHOP.note) note.textContent = SHOP.note; else { note.style.display = "none"; document.documentElement.style.setProperty("--note","0px"); }
+  renderCart();
+  route();
+}
+init();
+</script>
+</body>
+</html>

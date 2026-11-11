@@ -1,0 +1,460 @@
+{
+  "produkte": [
+    {
+      "id": "burberry-trench",
+      "verkauft": false,
+      "marke": "Burberry",
+      "titel": "Trenchcoat Kensington, Beige",
+      "preis": 389,
+      "kategorie": "damen",
+      "typ": "mantel",
+      "groesse": "38",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "100 % Baumwolle, Gabardine",
+      "masse": [
+        {
+          "bezeichnung": "Länge",
+          "wert": "104 cm"
+        },
+        {
+          "bezeichnung": "Schulter",
+          "wert": "40 cm"
+        }
+      ],
+      "beschreibung": "Der Klassiker mit Karofutter und abnehmbarem Gürtel. Alle Knöpfe vollständig, keine Flecken.",
+      "auffaelligkeiten": [
+        "Ärmelsaum minimal getragen"
+      ],
+      "bild": "/images/produkte/burberry-trench.jpg",
+      "bild2": "/images/produkte/burberry-trench-2.jpg",
+      "eingestellt": "2026-11-07",
+      "artikelnummer": "LR-1001"
+    },
+    {
+      "id": "maxmara-wollmantel",
+      "verkauft": false,
+      "marke": "Max Mara",
+      "titel": "Cape-Mantel aus Wolle, Senf",
+      "preis": 449,
+      "kategorie": "damen",
+      "typ": "mantel",
+      "groesse": "36",
+      "zustand": "Gut",
+      "passform": "Fällt weit aus",
+      "material": "Schurwolle und Kaschmir",
+      "masse": [
+        {
+          "bezeichnung": "Länge",
+          "wert": "112 cm"
+        },
+        {
+          "bezeichnung": "Schulter",
+          "wert": "42 cm"
+        }
+      ],
+      "beschreibung": "Weit schwingender Mantel mit Stehkragen und Lochmuster am Ausschnitt.",
+      "auffaelligkeiten": [
+        "Leichtes Pilling unter den Armen"
+      ],
+      "bild": "/images/produkte/maxmara-wollmantel.jpg",
+      "bild2": "/images/produkte/maxmara-wollmantel-2.jpg",
+      "eingestellt": "2026-11-06",
+      "artikelnummer": "LR-1002"
+    },
+    {
+      "id": "rl-zopfstrick",
+      "verkauft": false,
+      "marke": "Ralph Lauren",
+      "titel": "Cricket-Pullover mit Zopfmuster",
+      "preis": 79,
+      "kategorie": "herren",
+      "typ": "strick",
+      "groesse": "L",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "Baumwolle",
+      "masse": [
+        {
+          "bezeichnung": "Brustweite",
+          "wert": "58 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "70 cm"
+        }
+      ],
+      "beschreibung": "V-Ausschnitt mit Streifenkante, dicht gestrickt. Keine Löcher, keine Verfärbungen.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/rl-zopfstrick.jpg",
+      "bild2": "",
+      "eingestellt": "2026-11-08",
+      "artikelnummer": "LR-1003"
+    },
+    {
+      "id": "barbour-beaufort",
+      "verkauft": false,
+      "marke": "Barbour",
+      "titel": "Beaufort Wachsjacke, Oliv",
+      "preis": 129,
+      "kategorie": "herren",
+      "typ": "jacke",
+      "groesse": "M",
+      "zustand": "Gut",
+      "passform": "",
+      "material": "Gewachste Baumwolle, Tartanfutter",
+      "masse": [
+        {
+          "bezeichnung": "Brustweite",
+          "wert": "59 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "78 cm"
+        }
+      ],
+      "beschreibung": "Frisch nachgewachst, Reißverschluss läuft einwandfrei.",
+      "auffaelligkeiten": [
+        "Patina an Taschen und Kragen, typisch für gewachste Jacken"
+      ],
+      "bild": "/images/produkte/barbour-beaufort.jpg",
+      "bild2": "/images/produkte/barbour-beaufort-2.jpg",
+      "eingestellt": "2026-11-05",
+      "artikelnummer": "LR-1004"
+    },
+    {
+      "id": "acne-jeans",
+      "verkauft": false,
+      "marke": "Acne Studios",
+      "titel": "Jeans River, Indigo",
+      "preis": 119,
+      "kategorie": "herren",
+      "typ": "hose",
+      "groesse": "W32 L32",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "100 % Baumwolle, Selvedge",
+      "masse": [
+        {
+          "bezeichnung": "Bundweite",
+          "wert": "41 cm"
+        },
+        {
+          "bezeichnung": "Innenbein",
+          "wert": "81 cm"
+        }
+      ],
+      "beschreibung": "Gerade geschnittene Jeans aus festem Denim, kaum getragen.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/acne-jeans.jpg",
+      "bild2": "/images/produkte/acne-jeans-2.jpg",
+      "eingestellt": "2026-11-04",
+      "artikelnummer": "LR-1005"
+    },
+    {
+      "id": "hermes-carre",
+      "verkauft": false,
+      "marke": "Hermès",
+      "titel": "Seidencarré, Blau",
+      "preis": 229,
+      "kategorie": "accessoires",
+      "typ": "tuch",
+      "groesse": "Einheitsgröße",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "100 % Seide",
+      "masse": [
+        {
+          "bezeichnung": "Maße",
+          "wert": "90 × 90 cm"
+        }
+      ],
+      "beschreibung": "Handrollierte Kanten, Farben kräftig. Etikett vorhanden.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/hermes-carre.jpg",
+      "bild2": "/images/produkte/hermes-carre-2.jpg",
+      "eingestellt": "2026-11-08",
+      "artikelnummer": "LR-1006"
+    },
+    {
+      "id": "tweed-sakko",
+      "verkauft": false,
+      "marke": "Harris Tweed",
+      "titel": "Sakko mit Hahnentritt, Braun",
+      "preis": 119,
+      "kategorie": "herren",
+      "typ": "jacke",
+      "groesse": "50",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "Schurwolle, Harris Tweed",
+      "masse": [
+        {
+          "bezeichnung": "Schulter",
+          "wert": "46 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "77 cm"
+        }
+      ],
+      "beschreibung": "Zweiknopfsakko mit aufgesetzten Taschen, Futter intakt.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/tweed-sakko.jpg",
+      "bild2": "/images/produkte/tweed-sakko-2.jpg",
+      "eingestellt": "2026-11-03",
+      "artikelnummer": "LR-1007"
+    },
+    {
+      "id": "cos-kleid",
+      "verkauft": false,
+      "marke": "COS",
+      "titel": "Ärmelloses Plisseekleid, Schwarz",
+      "preis": 59,
+      "kategorie": "damen",
+      "typ": "kleid",
+      "groesse": "S",
+      "zustand": "Neuwertig",
+      "passform": "",
+      "material": "Viskose",
+      "masse": [
+        {
+          "bezeichnung": "Länge",
+          "wert": "96 cm"
+        }
+      ],
+      "beschreibung": "Einmal getragen. Feine Plissees, die beim Gehen mitschwingen.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/cos-kleid.jpg",
+      "bild2": "/images/produkte/cos-kleid-2.jpg",
+      "eingestellt": "2026-11-02",
+      "artikelnummer": "LR-1008"
+    },
+    {
+      "id": "apc-tasche",
+      "verkauft": false,
+      "marke": "A.P.C.",
+      "titel": "Henkeltasche aus Leder, Cognac",
+      "preis": 189,
+      "kategorie": "accessoires",
+      "typ": "tasche",
+      "groesse": "Einheitsgröße",
+      "zustand": "Gut",
+      "passform": "",
+      "material": "Strukturleder",
+      "masse": [
+        {
+          "bezeichnung": "Maße",
+          "wert": "32 × 26 × 9 cm"
+        }
+      ],
+      "beschreibung": "Schlichte Form mit langen Henkeln, Innenfutter sauber.",
+      "auffaelligkeiten": [
+        "Leichter Abrieb an zwei Ecken"
+      ],
+      "bild": "/images/produkte/apc-tasche.jpg",
+      "bild2": "/images/produkte/apc-tasche-2.jpg",
+      "eingestellt": "2026-11-01",
+      "artikelnummer": "LR-1009"
+    },
+    {
+      "id": "boss-sakko",
+      "verkauft": false,
+      "marke": "Hugo Boss",
+      "titel": "Sakko aus Schurwolle, Royalblau",
+      "preis": 89,
+      "kategorie": "herren",
+      "typ": "jacke",
+      "groesse": "50",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "Schurwolle",
+      "masse": [
+        {
+          "bezeichnung": "Schulter",
+          "wert": "46 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "76 cm"
+        }
+      ],
+      "beschreibung": "Zweiknopfsakko, Futter intakt. Ärmel nicht gekürzt.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/boss-sakko.jpg",
+      "bild2": "/images/produkte/boss-sakko-2.jpg",
+      "eingestellt": "2026-10-30",
+      "artikelnummer": "LR-1010"
+    },
+    {
+      "id": "marant-bluse",
+      "verkauft": false,
+      "marke": "Isabel Marant",
+      "titel": "Bluse mit Blumendruck",
+      "preis": 95,
+      "kategorie": "damen",
+      "typ": "hemd",
+      "groesse": "36",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "Baumwollvoile",
+      "masse": [
+        {
+          "bezeichnung": "Brustweite",
+          "wert": "50 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "60 cm"
+        }
+      ],
+      "beschreibung": "Kurze Ärmel, feiner Druck, leicht tailliert.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/marant-bluse.jpg",
+      "bild2": "/images/produkte/marant-bluse-2.jpg",
+      "eingestellt": "2026-10-29",
+      "artikelnummer": "LR-1011"
+    },
+    {
+      "id": "churchs-derby",
+      "verkauft": false,
+      "marke": "Church’s",
+      "titel": "Derby Shannon, Schwarz",
+      "preis": 159,
+      "kategorie": "herren",
+      "typ": "schuhe",
+      "groesse": "43",
+      "zustand": "Gut",
+      "passform": "",
+      "material": "Polished Binder Leder",
+      "masse": [
+        {
+          "bezeichnung": "Innensohle",
+          "wert": "28,5 cm"
+        }
+      ],
+      "beschreibung": "Rahmengenäht, Sohle mit gut erhaltenem Profil. Mit Schuhspannern.",
+      "auffaelligkeiten": [
+        "Gebrauchsspuren an der Laufsohle, Oberleder gepflegt"
+      ],
+      "bild": "/images/produkte/churchs-derby.jpg",
+      "bild2": "/images/produkte/churchs-derby-2.jpg",
+      "eingestellt": "2026-10-28",
+      "artikelnummer": "LR-1012"
+    },
+    {
+      "id": "cg-daune",
+      "verkauft": false,
+      "marke": "Canada Goose",
+      "titel": "Daunenjacke, Schwarz",
+      "preis": 349,
+      "kategorie": "herren",
+      "typ": "jacke",
+      "groesse": "L",
+      "zustand": "Gut",
+      "passform": "Fällt eher klein aus",
+      "material": "Arctic Tech, Daunenfüllung",
+      "masse": [
+        {
+          "bezeichnung": "Brustweite",
+          "wert": "63 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "72 cm"
+        }
+      ],
+      "beschreibung": "Warm und voll aufgeplustert.",
+      "auffaelligkeiten": [
+        "Kleine Abriebstelle am rechten Ärmelbündchen"
+      ],
+      "bild": "/images/produkte/cg-daune.jpg",
+      "bild2": "",
+      "eingestellt": "2026-10-27",
+      "artikelnummer": "LR-1013"
+    },
+    {
+      "id": "ganni-cardigan",
+      "verkauft": false,
+      "marke": "Ganni",
+      "titel": "Strickjacke, Weiß",
+      "preis": 79,
+      "kategorie": "damen",
+      "typ": "strick",
+      "groesse": "M",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "Wolle und Alpaka",
+      "masse": [
+        {
+          "bezeichnung": "Brustweite",
+          "wert": "52 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "58 cm"
+        }
+      ],
+      "beschreibung": "Weich und locker gestrickt, Knöpfe vollständig.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/ganni-cardigan.jpg",
+      "bild2": "",
+      "eingestellt": "2026-10-26",
+      "artikelnummer": "LR-1014"
+    },
+    {
+      "id": "longchamp-tasche",
+      "verkauft": false,
+      "marke": "Longchamp",
+      "titel": "Umhängetasche aus Leder, Cognac",
+      "preis": 119,
+      "kategorie": "accessoires",
+      "typ": "tasche",
+      "groesse": "Einheitsgröße",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "Glattleder",
+      "masse": [
+        {
+          "bezeichnung": "Maße",
+          "wert": "30 × 24 × 10 cm"
+        }
+      ],
+      "beschreibung": "Satteltaschen-Form mit Lederschnalle, Riemen verstellbar.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/longchamp-tasche.jpg",
+      "bild2": "",
+      "eingestellt": "2026-10-25",
+      "artikelnummer": "LR-1015"
+    },
+    {
+      "id": "rl-oxford",
+      "verkauft": false,
+      "marke": "Ralph Lauren",
+      "titel": "Oxfordhemd, Rosa",
+      "preis": 45,
+      "kategorie": "herren",
+      "typ": "hemd",
+      "groesse": "M",
+      "zustand": "Sehr gut",
+      "passform": "",
+      "material": "100 % Baumwolle",
+      "masse": [
+        {
+          "bezeichnung": "Brustweite",
+          "wert": "54 cm"
+        },
+        {
+          "bezeichnung": "Länge",
+          "wert": "76 cm"
+        }
+      ],
+      "beschreibung": "Kragen und Manschetten ohne Abrieb.",
+      "auffaelligkeiten": [],
+      "bild": "/images/produkte/rl-oxford.jpg",
+      "bild2": "/images/produkte/rl-oxford-2.jpg",
+      "eingestellt": "2026-10-24",
+      "artikelnummer": "LR-1016"
+    }
+  ]
+}

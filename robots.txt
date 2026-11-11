@@ -1,0 +1,3 @@
+# Vorschau: Suchmaschinen vorerst aussperren. Vor dem echten Start auf "Allow: /" ändern.
+User-agent: *
+Disallow: /
