@@ -4,7 +4,7 @@
 # =========================================================
 backend:
   name: github
-  repo: GITHUB-NAME/luxu-refind   # <- hier euren GitHub-Namen und den Repository-Namen eintragen
+  repo: vincentgoetz08-bit/Luxu_refind_3.0
   branch: main
   commit_messages:
     update: "Shop aktualisiert ({{path}})"
