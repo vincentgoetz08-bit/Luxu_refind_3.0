@@ -1,26 +1,6 @@
 {
   "produkte": [
     {
-      "auffaelligkeiten": [
-        "Ist faul aber Geld geil das gleich es aus"
-      ],
-      "groesse": "1,89cm",
-      "titel": "Sklaven Arbeiter, hellweiß",
-      "material": "Haut und Knochen",
-      "verkauft": false,
-      "typ": "schuhe",
-      "beschreibung": "Arbeitet wie ein behinderter für ein paar Streicheleinheiten und Leckerlis.🐶",
-      "preis": 10.96,
-      "bild2": "/images/produkte/bildschirmfoto-2026-11-11-um-09.18.23.png",
-      "passform": "fällt eher schmal aus ",
-      "eingestellt": "2026-11-11",
-      "marke": "Römer/Jelten",
-      "id": "kleiner-arbeiter-kann-alles",
-      "zustand": "Gut",
-      "kategorie": "herren",
-      "bild": "/images/produkte/bildschirmfoto-2026-11-11-um-09.20.16.png"
-    },
-    {
       "artikelnummer": "LR-1001",
       "auffaelligkeiten": [
         "Ärmelsaum minimal getragen"
@@ -170,6 +150,26 @@
       "zustand": "Sehr gut",
       "kategorie": "herren",
       "bild": "/images/produkte/acne-jeans.jpg"
+    },
+    {
+      "auffaelligkeiten": [
+        "Ist faul aber Geld geil das gleich es aus"
+      ],
+      "groesse": "1,89cm",
+      "titel": "Sklaven Arbeiter, hellweiß",
+      "material": "Haut und Knochen",
+      "verkauft": false,
+      "typ": "schuhe",
+      "beschreibung": "Arbeitet wie ein behinderter für ein paar Streicheleinheiten und Leckerlis.🐶",
+      "preis": 10.96,
+      "bild2": "/images/produkte/bildschirmfoto-2026-11-11-um-09.18.23.png",
+      "passform": "fällt eher schmal aus ",
+      "eingestellt": "2026-11-11",
+      "marke": "Römer/Jelten",
+      "id": "kleiner-arbeiter-kann-alles",
+      "zustand": "Gut",
+      "kategorie": "herren",
+      "bild": "/images/produkte/bildschirmfoto-2026-11-11-um-09.20.16.png"
     },
     {
       "artikelnummer": "LR-1006",
